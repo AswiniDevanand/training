@@ -1,0 +1,1198 @@
+//ouput which i got
+
+mysql> select * from emp;
+ERROR 1046 (3D000): No database selected
+mysql> use training;
+Database changed
+mysql> select * from emp;
++-------+---------+---------------+------------+----------+----------+--------------+
+| empid | empname | email         | phone      | salary   | deptcode | ManagerEmpId |
++-------+---------+---------------+------------+----------+----------+--------------+
+|  1001 | Scott   | scott@xyz.com | 9995567525 | 49500.00 |       10 |         NULL |
+|  1002 | Jack    | jack@xyz.com  | 9595267525 | 45000.00 |       20 |         1001 |
+|  1003 | Ram     | ram@xyz.com   | 9555567525 | 49500.00 |       10 |         1001 |
+|  1004 | Marry   | marry@xyz.com | 8555567525 | 49500.00 |       10 |         1001 |
++-------+---------+---------------+------------+----------+----------+--------------+
+4 rows in set (0.06 sec)
+
+mysql> select * from max(salary);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'max(salary)' at line 1
+mysql> select  max(salary) from emp;
++-------------+
+| max(salary) |
++-------------+
+|    49500.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select  avg(salary) from emp;
++--------------+
+| avg(salary)  |
++--------------+
+| 48375.000000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select  count(*) from emp;
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select  sum(salary) from emp;
++-------------+
+| sum(salary) |
++-------------+
+|   193500.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select  * from courseregistration;
++------------+-------+------------+------------+-----------------+
+| CourseCode | EmpId | StartDate  | EndDate    | AssessmentScore |
++------------+-------+------------+------------+-----------------+
+| DB101      |  1001 | 2021-12-07 | 2021-12-09 |              65 |
+| DB102      |  1002 | 2022-02-07 | 2022-02-10 |              90 |
+| DB103      |  1003 | 2021-04-08 | 2021-04-11 |              90 |
++------------+-------+------------+------------+-----------------+
+3 rows in set (0.07 sec)
+
+mysql> select max(endDate) from courseRegistration;
++--------------+
+| max(endDate) |
++--------------+
+| 2022-02-10   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select min(endDate) from courseRegistration;
++--------------+
+| min(endDate) |
++--------------+
+| 2021-04-11   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp;
++-------+---------+---------------+------------+----------+----------+--------------+
+| empid | empname | email         | phone      | salary   | deptcode | ManagerEmpId |
++-------+---------+---------------+------------+----------+----------+--------------+
+|  1001 | Scott   | scott@xyz.com | 9995567525 | 49500.00 |       10 |         NULL |
+|  1002 | Jack    | jack@xyz.com  | 9595267525 | 45000.00 |       20 |         1001 |
+|  1003 | Ram     | ram@xyz.com   | 9555567525 | 49500.00 |       10 |         1001 |
+|  1004 | Marry   | marry@xyz.com | 8555567525 | 49500.00 |       10 |         1001 |
++-------+---------+---------------+------------+----------+----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> Count(deptcode) from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Count(deptcode) from emp' at line 1
+mysql> select Count(deptcode) from emp;
++-----------------+
+| Count(deptcode) |
++-----------------+
+|               4 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select Count(distinct deptcode) from emp;
++--------------------------+
+| Count(distinct deptcode) |
++--------------------------+
+|                        2 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Count(distinct deptcode) from emp where managerempid=1001;
++--------------------------+
+| Count(distinct deptcode) |
++--------------------------+
+|                        2 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Count(distinct empid) from emp where managerempid=1001;
++-----------------------+
+| Count(distinct empid) |
++-----------------------+
+|                     3 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from information_schema.table_constraints;
++--------------------+-------------------+-----------------+--------------+---------------------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME                | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+---------------------------+-----------------+
+| def                | mysql             | PRIMARY         | mysql        | columns_priv              | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | db                        | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | event                     | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | func                      | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | help_category             | PRIMARY KEY     |
+| def                | mysql             | name            | mysql        | help_category             | UNIQUE          |
+| def                | mysql             | PRIMARY         | mysql        | help_keyword              | PRIMARY KEY     |
+| def                | mysql             | name            | mysql        | help_keyword              | UNIQUE          |
+| def                | mysql             | PRIMARY         | mysql        | help_relation             | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | help_topic                | PRIMARY KEY     |
+| def                | mysql             | name            | mysql        | help_topic                | UNIQUE          |
+| def                | mysql             | PRIMARY         | mysql        | innodb_index_stats        | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | innodb_table_stats        | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | ndb_binlog_index          | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | plugin                    | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | proc                      | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | procs_priv                | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | proxies_priv              | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | servers                   | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | slave_master_info         | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | slave_relay_log_info      | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | slave_worker_info         | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | tables_priv               | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | time_zone                 | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | time_zone_leap_second     | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | time_zone_name            | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | time_zone_transition      | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | time_zone_transition_type | PRIMARY KEY     |
+| def                | mysql             | PRIMARY         | mysql        | user                      | PRIMARY KEY     |
+| def                | training          | PRIMARY         | training     | course                    | PRIMARY KEY     |
+| def                | training          | PRIMARY         | training     | courseregistration        | PRIMARY KEY     |
+| def                | training          | PRIMARY         | training     | department                | PRIMARY KEY     |
+| def                | training          | PRIMARY         | training     | dept                      | PRIMARY KEY     |
+| def                | training          | PRIMARY         | training     | emp                       | PRIMARY KEY     |
+| def                | training          | email           | training     | emp                       | UNIQUE          |
+| def                | training          | PRIMARY         | training     | project                   | PRIMARY KEY     |
++--------------------+-------------------+-----------------+--------------+---------------------------+-----------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//HAVING
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+-------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State       |
++------------+--------------+-------------+-----------+-------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka   |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka   |
+|       1004 | Leo          |  5000000.00 | Pune      | Karnataka   |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka   |
++------------+--------------+-------------+-----------+-------------+
+6 rows in set (0.02 sec)
+
+mysql> Select city,Count(*) from Salesman Group By City;
++-----------+----------+
+| city      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> update Salesman set state='Maharashtra ' where SalesmanId=1004;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> desc salesman;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| SalesmanId   | decimal(5,0)  | NO   | PRI | NULL    |       |
+| SalesManName | varchar(30)   | YES  |     | NULL    |       |
+| SalesAmount  | decimal(10,2) | YES  |     | NULL    |       |
+| City         | varchar(30)   | YES  |     | NULL    |       |
+| State        | varchar(30)   | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+--------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State        |
++------------+--------------+-------------+-----------+--------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka    |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra  |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka    |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra  |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra  |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka    |
++------------+--------------+-------------+-----------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> Select city,Count(*) from Salesman Group By City;
++-----------+----------+
+| city      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select city,Count(*) from Salesman Group By State;
++-----------+----------+
+| city      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        3 |
++-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> Select state,Count(*) from Salesman Group By State;
++-------------+----------+
+| state       | Count(*) |
++-------------+----------+
+| Karnataka   |        3 |
+| Maharashtra |        3 |
++-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> Select State,Count(*) from Salesman Group By State;
++-------------+----------+
+| State       | Count(*) |
++-------------+----------+
+| Karnataka   |        3 |
+| Maharashtra |        3 |
++-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+--------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State        |
++------------+--------------+-------------+-----------+--------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka    |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra  |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka    |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra  |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra  |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka    |
++------------+--------------+-------------+-----------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> Select state,Count(*) from Salesman Group By State;
++-------------+----------+
+| state       | Count(*) |
++-------------+----------+
+| Karnataka   |        3 |
+| Maharashtra |        3 |
++-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql>  update Salesman set state='Maharashtra' where SalesmanId=1004;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+-------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State       |
++------------+--------------+-------------+-----------+-------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka   |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka   |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka   |
++------------+--------------+-------------+-----------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> Select state,Count(*) from Salesman Group By State;
++-------------+----------+
+| state       | Count(*) |
++-------------+----------+
+| Karnataka   |        3 |
+| Maharashtra |        3 |
++-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City order by city;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+-------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State       |
++------------+--------------+-------------+-----------+-------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka   |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka   |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka   |
++------------+--------------+-------------+-----------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City order by count(*);
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Pune      |        1 |
+| Mumbai    |        2 |
+| Bangalore |        3 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City order by count(*) desc;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,state,Count(*) from Salesman Group By City;
++-----------+-------------+----------+
+| City      | state       | Count(*) |
++-----------+-------------+----------+
+| Bangalore | Karnataka   |        3 |
+| Mumbai    | Maharashtra |        2 |
+| Pune      | Maharashtra |        1 |
++-----------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,state,Count(*) from Salesman Group By City,state;
++-----------+-------------+----------+
+| City      | state       | Count(*) |
++-----------+-------------+----------+
+| Bangalore | Karnataka   |        3 |
+| Mumbai    | Maharashtra |        2 |
+| Pune      | Maharashtra |        1 |
++-----------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City Having count(*)>1;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
++-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql>  Select City,Count(*) from Salesman Group By City Having count(*)>1 order by city;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
++-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Salesman values(1007,'Sai Kiran',5000000.00,'Hyderabad','Telangana');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Salesman values(1008,'Sakshi',6000000.00,'New Delhi','Delhi');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+-------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State       |
++------------+--------------+-------------+-----------+-------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka   |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka   |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka   |
+|       1007 | Sai Kiran    |  5000000.00 | Hyderabad | Telangana   |
+|       1008 | Sakshi       |  6000000.00 | New Delhi | Delhi       |
++------------+--------------+-------------+-----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> Select State,Count(*) from Salesman Group By State;
++-------------+----------+
+| State       | Count(*) |
++-------------+----------+
+| Delhi       |        1 |
+| Karnataka   |        3 |
+| Maharashtra |        3 |
+| Telangana   |        1 |
++-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> Select city,Count(*) from Salesman Group By City;
++-----------+----------+
+| city      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Hyderabad |        1 |
+| Mumbai    |        2 |
+| New Delhi |        1 |
+| Pune      |        1 |
++-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman;
++-----------+------------------+
+| City      | MAx(SalesAmount) |
++-----------+------------------+
+| Bangalore |       6000000.00 |
++-----------+------------------+
+1 row in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra';
++--------+------------------+
+| City   | MAx(SalesAmount) |
++--------+------------------+
+| Mumbai |       5000000.00 |
++--------+------------------+
+1 row in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra' Group by city;
++--------+------------------+
+| City   | MAx(SalesAmount) |
++--------+------------------+
+| Mumbai |       3000000.00 |
+| Pune   |       5000000.00 |
++--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra' Group by city Having Max(SalesAmount)>1500000;
++--------+------------------+
+| City   | MAx(SalesAmount) |
++--------+------------------+
+| Mumbai |       3000000.00 |
+| Pune   |       5000000.00 |
++--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra' Group by city Having Max(SalesAmount)>15000000;
+Empty set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra' Group by city Having Max(SalesAmount)>1500000 order by Max(SalesAmount);
++--------+------------------+
+| City   | MAx(SalesAmount) |
++--------+------------------+
+| Mumbai |       3000000.00 |
+| Pune   |       5000000.00 |
++--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Karnataka' Group by city Having Max(SalesAmount)>1500000 order by Max(SalesAmount);
++-----------+------------------+
+| City      | MAx(SalesAmount) |
++-----------+------------------+
+| Bangalore |       5000000.00 |
++-----------+------------------+
+1 row in set (0.00 sec)
+
+mysql>  Select City,MAx(SalesAmount) from Salesman where State='Karnataka' Group by city Having Max(SalesAmount)>1500000 order by Max(SalesAmount);
++-----------+------------------+
+| City      | MAx(SalesAmount) |
++-----------+------------------+
+| Bangalore |       5000000.00 |
++-----------+------------------+
+1 row in set (0.00 sec)
+
+
+//joins
+//inner join
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+-------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State       |
++------------+--------------+-------------+-----------+-------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka   |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka   |
+|       1004 | Leo          |  5000000.00 | Pune      | Karnataka   |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka   |
++------------+--------------+-------------+-----------+-------------+
+6 rows in set (0.02 sec)
+
+mysql> Select city,Count(*) from Salesman Group By City;
++-----------+----------+
+| city      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> update Salesman set state='Maharashtra ' where SalesmanId=1004;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> desc salesman;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| SalesmanId   | decimal(5,0)  | NO   | PRI | NULL    |       |
+| SalesManName | varchar(30)   | YES  |     | NULL    |       |
+| SalesAmount  | decimal(10,2) | YES  |     | NULL    |       |
+| City         | varchar(30)   | YES  |     | NULL    |       |
+| State        | varchar(30)   | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+--------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State        |
++------------+--------------+-------------+-----------+--------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka    |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra  |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka    |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra  |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra  |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka    |
++------------+--------------+-------------+-----------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> Select city,Count(*) from Salesman Group By City;
++-----------+----------+
+| city      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select city,Count(*) from Salesman Group By State;
++-----------+----------+
+| city      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        3 |
++-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> Select state,Count(*) from Salesman Group By State;
++-------------+----------+
+| state       | Count(*) |
++-------------+----------+
+| Karnataka   |        3 |
+| Maharashtra |        3 |
++-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> Select State,Count(*) from Salesman Group By State;
++-------------+----------+
+| State       | Count(*) |
++-------------+----------+
+| Karnataka   |        3 |
+| Maharashtra |        3 |
++-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+--------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State        |
++------------+--------------+-------------+-----------+--------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka    |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra  |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka    |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra  |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra  |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka    |
++------------+--------------+-------------+-----------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> Select state,Count(*) from Salesman Group By State;
++-------------+----------+
+| state       | Count(*) |
++-------------+----------+
+| Karnataka   |        3 |
+| Maharashtra |        3 |
++-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql>  update Salesman set state='Maharashtra' where SalesmanId=1004;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+-------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State       |
++------------+--------------+-------------+-----------+-------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka   |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka   |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka   |
++------------+--------------+-------------+-----------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> Select state,Count(*) from Salesman Group By State;
++-------------+----------+
+| state       | Count(*) |
++-------------+----------+
+| Karnataka   |        3 |
+| Maharashtra |        3 |
++-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City order by city;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+-------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State       |
++------------+--------------+-------------+-----------+-------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka   |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka   |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka   |
++------------+--------------+-------------+-----------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City order by count(*);
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Pune      |        1 |
+| Mumbai    |        2 |
+| Bangalore |        3 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City order by count(*) desc;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
+| Pune      |        1 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,state,Count(*) from Salesman Group By City;
++-----------+-------------+----------+
+| City      | state       | Count(*) |
++-----------+-------------+----------+
+| Bangalore | Karnataka   |        3 |
+| Mumbai    | Maharashtra |        2 |
+| Pune      | Maharashtra |        1 |
++-----------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,state,Count(*) from Salesman Group By City,state;
++-----------+-------------+----------+
+| City      | state       | Count(*) |
++-----------+-------------+----------+
+| Bangalore | Karnataka   |        3 |
+| Mumbai    | Maharashtra |        2 |
+| Pune      | Maharashtra |        1 |
++-----------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select City,Count(*) from Salesman Group By City Having count(*)>1;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
++-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql>  Select City,Count(*) from Salesman Group By City Having count(*)>1 order by city;
++-----------+----------+
+| City      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Mumbai    |        2 |
++-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Salesman values(1007,'Sai Kiran',5000000.00,'Hyderabad','Telangana');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Salesman values(1008,'Sakshi',6000000.00,'New Delhi','Delhi');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from Salesman;
++------------+--------------+-------------+-----------+-------------+
+| SalesmanId | SalesManName | SalesAmount | City      | State       |
++------------+--------------+-------------+-----------+-------------+
+|       1001 | Raj          |  1000000.00 | Bangalore | Karnataka   |
+|       1002 | Ram          |  2000000.00 | Mumbai    | Maharashtra |
+|       1003 | Reshma       |  5000000.00 | Bangalore | Karnataka   |
+|       1004 | Leo          |  5000000.00 | Pune      | Maharashtra |
+|       1005 | Lakshmi      |  3000000.00 | Mumbai    | Maharashtra |
+|       1006 | Deepa        |  4000000.00 | Bangalore | Karnataka   |
+|       1007 | Sai Kiran    |  5000000.00 | Hyderabad | Telangana   |
+|       1008 | Sakshi       |  6000000.00 | New Delhi | Delhi       |
++------------+--------------+-------------+-----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> Select State,Count(*) from Salesman Group By State;
++-------------+----------+
+| State       | Count(*) |
++-------------+----------+
+| Delhi       |        1 |
+| Karnataka   |        3 |
+| Maharashtra |        3 |
+| Telangana   |        1 |
++-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> Select city,Count(*) from Salesman Group By City;
++-----------+----------+
+| city      | Count(*) |
++-----------+----------+
+| Bangalore |        3 |
+| Hyderabad |        1 |
+| Mumbai    |        2 |
+| New Delhi |        1 |
+| Pune      |        1 |
++-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman;
++-----------+------------------+
+| City      | MAx(SalesAmount) |
++-----------+------------------+
+| Bangalore |       6000000.00 |
++-----------+------------------+
+1 row in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra';
++--------+------------------+
+| City   | MAx(SalesAmount) |
++--------+------------------+
+| Mumbai |       5000000.00 |
++--------+------------------+
+1 row in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra' Group by city;
++--------+------------------+
+| City   | MAx(SalesAmount) |
++--------+------------------+
+| Mumbai |       3000000.00 |
+| Pune   |       5000000.00 |
++--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra' Group by city Having Max(SalesAmount)>1500000;
++--------+------------------+
+| City   | MAx(SalesAmount) |
++--------+------------------+
+| Mumbai |       3000000.00 |
+| Pune   |       5000000.00 |
++--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra' Group by city Having Max(SalesAmount)>15000000;
+Empty set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Maharashtra' Group by city Having Max(SalesAmount)>1500000 order by Max(SalesAmount);
++--------+------------------+
+| City   | MAx(SalesAmount) |
++--------+------------------+
+| Mumbai |       3000000.00 |
+| Pune   |       5000000.00 |
++--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select City,MAx(SalesAmount) from Salesman where State='Karnataka' Group by city Having Max(SalesAmount)>1500000 order by Max(SalesAmount);
++-----------+------------------+
+| City      | MAx(SalesAmount) |
++-----------+------------------+
+| Bangalore |       5000000.00 |
++-----------+------------------+
+1 row in set (0.00 sec)
+
+mysql>  Select City,MAx(SalesAmount) from Salesman where State='Karnataka' Group by city Having Max(SalesAmount)>1500000 order by Max(SalesAmount);
++-----------+------------------+
+| City      | MAx(SalesAmount) |
++-----------+------------------+
+| Bangalore |       5000000.00 |
++-----------+------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp;
++-------+---------+---------------+------------+----------+----------+--------------+
+| empid | empname | email         | phone      | salary   | deptcode | ManagerEmpId |
++-------+---------+---------------+------------+----------+----------+--------------+
+|  1001 | Scott   | scott@xyz.com | 9995567525 | 49500.00 |       10 |         NULL |
+|  1002 | Jack    | jack@xyz.com  | 9595267525 | 45000.00 |       20 |         1001 |
+|  1003 | Ram     | ram@xyz.com   | 9555567525 | 49500.00 |       10 |         1001 |
+|  1004 | Marry   | marry@xyz.com | 8555567525 | 49500.00 |       10 |         1001 |
++-------+---------+---------------+------------+----------+----------+--------------+
+4 rows in set (0.08 sec)
+
+mysql> select * from dept;
++---------+--------------------------+
+| DepCode | deptname                 |
++---------+--------------------------+
+|      10 | Learning and Development |
+|      20 | Resources                |
+|      30 | IS                       |
++---------+--------------------------+
+3 rows in set (0.07 sec)
+
+mysql> select * from course;
++------------+---------------+-----------------+
+| CourseCode | CourseName    | DurationinHours |
++------------+---------------+-----------------+
+| DB01       | RDBMS and SQL |              27 |
+| DB02       | PLSQL         |              36 |
+| DB03       | GIT Session   |              18 |
++------------+---------------+-----------------+
+3 rows in set (0.08 sec)
+
+mysql> select * from courseregistration;
++------------+-------+------------+------------+-----------------+
+| CourseCode | EmpId | StartDate  | EndDate    | AssessmentScore |
++------------+-------+------------+------------+-----------------+
+| DB101      |  1001 | 2021-12-07 | 2021-12-09 |              65 |
+| DB102      |  1002 | 2022-02-07 | 2022-02-10 |              90 |
+| DB103      |  1003 | 2021-04-08 | 2021-04-11 |              90 |
++------------+-------+------------+------------+-----------------+
+3 rows in set (0.07 sec)
+
+mysql> select empname,deptname,coursename  from emp inner join dept on emp.deptcode = dept.depcode inner join courseregistration cr on emp.empid = cr.empid inner join course on cr.coursecode=course.coursecode;
+Empty set (0.00 sec)
+
+mysql> update course set coursecode = 'DB101' where coursecode='DB01';
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update course set coursecode = 'DB102' where coursecode='DB02';
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update course set coursecode = 'DB103' where coursecode='DB03';
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select empname,deptname,coursename  from emp inner join dept on emp.deptcode = dept.depcode inner join courseregistration cr on emp.empid = cr.empid inner join course on cr.coursecode=course.coursecode;
++---------+--------------------------+---------------+
+| empname | deptname                 | coursename    |
++---------+--------------------------+---------------+
+| Scott   | Learning and Development | RDBMS and SQL |
+| Ram     | Learning and Development | GIT Session   |
+| Jack    | Resources                | PLSQL         |
++---------+--------------------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select emp.empId,emp.empname,emp.deptCode,Dept.Deptname from emp Cross Join Dept;
++-------+---------+----------+--------------------------+
+| empId | empname | deptCode | Deptname                 |
++-------+---------+----------+--------------------------+
+|  1001 | Scott   |       10 | Learning and Development |
+|  1001 | Scott   |       10 | Resources                |
+|  1001 | Scott   |       10 | IS                       |
+|  1002 | Jack    |       20 | Learning and Development |
+|  1002 | Jack    |       20 | Resources                |
+|  1002 | Jack    |       20 | IS                       |
+|  1003 | Ram     |       10 | Learning and Development |
+|  1003 | Ram     |       10 | Resources                |
+|  1003 | Ram     |       10 | IS                       |
+|  1004 | Marry   |       10 | Learning and Development |
+|  1004 | Marry   |       10 | Resources                |
+|  1004 | Marry   |       10 | IS                       |
++-------+---------+----------+--------------------------+
+12 rows in set (0.00 sec)
+
+mysql> select emp.empId,emp.empname,emp.deptCode,Dept.Deptname from emp Cross Join Dept;
++-------+---------+----------+--------------------------+
+| empId | empname | deptCode | Deptname                 |
++-------+---------+----------+--------------------------+
+|  1001 | Scott   |       10 | Learning and Development |
+|  1001 | Scott   |       10 | Resources                |
+|  1001 | Scott   |       10 | IS                       |
+|  1002 | Jack    |       20 | Learning and Development |
+|  1002 | Jack    |       20 | Resources                |
+|  1002 | Jack    |       20 | IS                       |
+|  1003 | Ram     |       10 | Learning and Development |
+|  1003 | Ram     |       10 | Resources                |
+|  1003 | Ram     |       10 | IS                       |
+|  1004 | Marry   |       10 | Learning and Development |
+|  1004 | Marry   |       10 | Resources                |
+|  1004 | Marry   |       10 | IS                       |
++-------+---------+----------+--------------------------+
+12 rows in set (0.00 sec)
+
+mysql> select emp.empId,emp.empname,emp.deptCode,Dept.Deptname from emp ,Dept;
++-------+---------+----------+--------------------------+
+| empId | empname | deptCode | Deptname                 |
++-------+---------+----------+--------------------------+
+|  1001 | Scott   |       10 | Learning and Development |
+|  1001 | Scott   |       10 | Resources                |
+|  1001 | Scott   |       10 | IS                       |
+|  1002 | Jack    |       20 | Learning and Development |
+|  1002 | Jack    |       20 | Resources                |
+|  1002 | Jack    |       20 | IS                       |
+|  1003 | Ram     |       10 | Learning and Development |
+|  1003 | Ram     |       10 | Resources                |
+|  1003 | Ram     |       10 | IS                       |
+|  1004 | Marry   |       10 | Learning and Development |
+|  1004 | Marry   |       10 | Resources                |
+|  1004 | Marry   |       10 | IS                       |
++-------+---------+----------+--------------------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from emp;
++-------+---------+---------------+------------+----------+----------+--------------+
+| empid | empname | email         | phone      | salary   | deptcode | ManagerEmpId |
++-------+---------+---------------+------------+----------+----------+--------------+
+|  1001 | Scott   | scott@xyz.com | 9995567525 | 49500.00 |       10 |         NULL |
+|  1002 | Jack    | jack@xyz.com  | 9595267525 | 45000.00 |       20 |         1001 |
+|  1003 | Ram     | ram@xyz.com   | 9555567525 | 49500.00 |       10 |         1001 |
+|  1004 | Marry   | marry@xyz.com | 8555567525 | 49500.00 |       10 |         1001 |
++-------+---------+---------------+------------+----------+----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from dept;
++---------+--------------------------+
+| DepCode | deptname                 |
++---------+--------------------------+
+|      10 | Learning and Development |
+|      20 | Resources                |
+|      30 | IS                       |
++---------+--------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select Empid,EmpName ,deptName from Emp Inner JOIN Dept on emp.deptcode=Dept.depCode;
++-------+---------+--------------------------+
+| Empid | EmpName | deptName                 |
++-------+---------+--------------------------+
+|  1001 | Scott   | Learning and Development |
+|  1002 | Jack    | Resources                |
+|  1003 | Ram     | Learning and Development |
+|  1004 | Marry   | Learning and Development |
++-------+---------+--------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select Empid,EmpName ,deptName from Emp,Dept where emp.deptcode=Dept.depCode;
++-------+---------+--------------------------+
+| Empid | EmpName | deptName                 |
++-------+---------+--------------------------+
+|  1001 | Scott   | Learning and Development |
+|  1002 | Jack    | Resources                |
+|  1003 | Ram     | Learning and Development |
+|  1004 | Marry   | Learning and Development |
++-------+---------+--------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select Empid,EmpName ,deptName from Emp,Dept where emp.deptcode=Dept.depCode and emp.salary>100000;
+Empty set (0.00 sec)
+
+mysql> select Empid,EmpName ,deptName from Emp,Dept where emp.deptcode=Dept.depCode and emp.salary>10000;
++-------+---------+--------------------------+
+| Empid | EmpName | deptName                 |
++-------+---------+--------------------------+
+|  1001 | Scott   | Learning and Development |
+|  1002 | Jack    | Resources                |
+|  1003 | Ram     | Learning and Development |
+|  1004 | Marry   | Learning and Development |
++-------+---------+--------------------------+
+4 rows in set (0.00 sec)
+
+
+//outer join
+
+
+
+mysql> select Empid,EmpName, deptName from Emp Left Outer join Dept on emp.deptCode = Dept.depcode;
++-------+---------+--------------------------+
+| Empid | EmpName | deptName                 |
++-------+---------+--------------------------+
+|  1001 | Scott   | Learning and Development |
+|  1003 | Ram     | Learning and Development |
+|  1004 | Marry   | Learning and Development |
+|  1002 | Jack    | Resources                |
++-------+---------+--------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select Empid,EmpName, deptName from Emp right Outer join Dept on emp.deptCode = Dept.depcode;
++-------+---------+--------------------------+
+| Empid | EmpName | deptName                 |
++-------+---------+--------------------------+
+|  1001 | Scott   | Learning and Development |
+|  1002 | Jack    | Resources                |
+|  1003 | Ram     | Learning and Development |
+|  1004 | Marry   | Learning and Development |
+|  NULL | NULL    | IS                       |
++-------+---------+--------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from dept;
++---------+--------------------------+
+| DepCode | deptname                 |
++---------+--------------------------+
+|      10 | Learning and Development |
+|      20 | Resources                |
+|      30 | IS                       |
++---------+--------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from emp;
++-------+---------+---------------+------------+----------+----------+--------------+
+| empid | empname | email         | phone      | salary   | deptcode | ManagerEmpId |
++-------+---------+---------------+------------+----------+----------+--------------+
+|  1001 | Scott   | scott@xyz.com | 9995567525 | 49500.00 |       10 |         NULL |
+|  1002 | Jack    | jack@xyz.com  | 9595267525 | 45000.00 |       20 |         1001 |
+|  1003 | Ram     | ram@xyz.com   | 9555567525 | 49500.00 |       10 |         1001 |
+|  1004 | Marry   | marry@xyz.com | 8555567525 | 49500.00 |       10 |         1001 |
++-------+---------+---------------+------------+----------+----------+--------------+
+
+
+select Empid,EmpName, deptName from Emp Left Outer join Dept on emp.deptCode = Dept.depcode UNION ALL select Empid,EmpName, deptName from Emp right Outer join Dept on emp.deptCode = Dept.depcode;
++-------+---------+--------------------------+
+| Empid | EmpName | deptName                 |
++-------+---------+--------------------------+
+|  1001 | Scott   | Learning and Development |
+|  1003 | Ram     | Learning and Development |
+|  1004 | Marry   | Learning and Development |
+|  1002 | Jack    | Resources                |
+|  1001 | Scott   | Learning and Development |
+|  1002 | Jack    | Resources                |
+|  1003 | Ram     | Learning and Development |
+|  1004 | Marry   | Learning and Development |
+|  NULL | NULL    | IS                       |
++-------+---------+--------------------------+
+
+//self join
+
+ select e.empname,m.empname as "Manager Name" from emp e inner join emp m on e.ManagerEmpid=m.empId;
++---------+--------------+
+| empname | Manager Name |
++---------+--------------+
+| Jack    | Scott        |
+| Ram     | Scott        |
+| Marry   | Scott        |
++---------+--------------+
+
+mysql> select * from emp;
++-------+---------+---------------+------------+-----------+----------+--------------+
+| empid | empname | email         | phone      | salary    | deptcode | ManagerEmpId |
++-------+---------+---------------+------------+-----------+----------+--------------+
+|  1001 | Scott   | scott@xyz.com | 9995567525 |  49500.00 |       10 |         NULL |
+|  1002 | Jack    | jack@xyz.com  | 9595267525 |  45000.00 |       20 |         1001 |
+|  1003 | Ram     | ram@xyz.com   | 9555567525 |  49500.00 |       10 |         1001 |
+|  1004 | Marry   | marry@xyz.com | 8555567525 |  49500.00 |       10 |         1001 |
+|  1005 | Ahmad   | Ahmad@xyz.com |       NULL |  75000.00 |     NULL |         NULL |
+|  1006 | Naveen  | raam@xyz.com  | 6731264321 | 150000.00 |       10 |         1001 |
++-------+---------+---------------+------------+-----------+----------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> select e.empname,m.empname as "Manager Name" from emp e inner join emp m on e.ManagerEmpid=m.empId;
++---------+--------------+
+| empname | Manager Name |
++---------+--------------+
+| Jack    | Scott        |
+| Ram     | Scott        |
+| Marry   | Scott        |
+| Naveen  | Scott        |
++---------+--------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
